@@ -92,5 +92,5 @@ class Solution:
      res = 0
      for item in nums:
         res ^= item
-        return res
+     return res
 ```     
