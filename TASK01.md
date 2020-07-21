@@ -49,3 +49,48 @@ for item in list:
 # sep 是每个输出后连一个‘ok’
 # apple&ok#orange&ok#mango&ok#
 ```
+## 5.原码、反码和补码
+||原码|反码|补码|
+|:--:|:--:|:--:|:--:|
+|正数|符号位0|原码|原码|
+|负数|符号位1|符号位不变，其他取反|补码+1|
+- **位运算中，符号位也参与运算**
+
+## 6.按位运算
+
+|按位异或^|>>右移||
+|:--:|:--:|:--:|
+|相异为1|左边补0||
+|满足交换律+结合律|n>>m即n/(2^m)|n<<m即n*2^m|
+|^迅速交换两个整数-->|a^=b b^=a a^=b||
+a&(-a)得最后一位1在哪
+
+## 7.利用位运算实现整数集合
+
+
+## 练习题：
+
+leetcode 习题 136. 只出现一次的数字
+
+给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
+尝试使用位运算解决此题。
+题目说明:
+```python
+"""
+Input file
+example1: [2,2,1]
+example2: [4,1,2,1,2]
+
+Output file
+result1: 1
+result2: 4
+"""
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:    
+     # your code here
+     res = 0
+     for item in nums:
+        res ^= item
+        return res
+```     
