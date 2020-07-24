@@ -225,7 +225,7 @@ elif l_r ==l_t:
 else:
     print('T')
 
-print(l/v_t)
+print(l_t/v_t)
 
 ```
 ![avatar](/龟兔赛跑.png)
