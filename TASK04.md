@@ -319,3 +319,67 @@ print('%#o' % 10)  # 0o12
 print('%#x' % 108)  # 0x6c
 print('%010d' % 5)  # 0000000005
 ```
+# 练习题
+1、字符串函数回顾
+- 怎么批量替换字符串中的元素？
+答： replace(old, new [, max]) 把 将字符串中的old替换成new，如果max指定，则替换不超过max次。
+- 怎么把字符串按照空格进⾏拆分？
+答： s.split()
+- 怎么去除字符串⾸位的空格？
+答： s.lstrip()
+2、实现isdigit函数
+题目要求
+实现函数isdigit， 判断字符串里是否只包含数字0~9
+```python
+
+def isdigit(string):
+    """
+    判断字符串只包含数字
+    :param string:
+    :return:
+    """
+    # your code here
+    if not string:
+        return False
+    for i in string:
+        if not(48 <= ord(i) <= 57):
+            return  False
+    return True
+
+```
+3、leetcode 5题 最长回文子串
+给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
+示例:
+输入: "babad"
+输出: "bab"
+输入: "cbbd"
+输出: "bb"
+```python
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        size = len(s)
+        if size < 2:
+            return s
+        #判断给定字符串的长度，长度为1的一定是回文，直接返回
+        dp = [[False for _ in range(size)] for _ in range(size)] #初始化二维数组dp[i][j]都为False
+        max_len = 1
+        start = 0
+        for i in range(size):
+         #dp[i][j]表示子串是否为回文子串。单个字符一定是回文串，因此把对角线初始化为true
+            dp[i][i] = True
+        for j in range(1, size):  #i为行，j为列（从上到下，从左到右填表）
+            for i in range(0, j):
+                if s[i]==s[j]: #回文序列必须满足左右两头相等
+                    if j-i<3:
+                        dp[i][j] = True
+                    else:
+                        dp[i][j] = dp[i+1][j-1] #状态转移方程（左右边界各往中间移动）
+                else:
+                    dp[i][j] = False
+                if dp[i][j]:
+                    cur_len = j-i+1 #记录子串长度
+                    if cur_len > max_len:
+                        max_len = cur_len
+                        start = i#子串起始位置
+        return s[start:start+max_len]
+```
